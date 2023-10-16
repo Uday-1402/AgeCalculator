@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            margin:15px;
+            padding:7px;
+            font-family:"Roboto";
+        }
+        h1{
+            color:rgb(210, 103, 214);
+        }
+        body{
+            background-color:rgb(210, 103, 214) ;
+            display:flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        #container{
+            border-radius: 5px;
+            background-color: white;
+            width:60%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+        }
+        #submit{
+            background-color:rgb(101, 101, 217);
+            color:white;
+            border: none;
+            width:8vmax;
+            height:4vmax;
+            transition:all 0.5s ease-in-out;
+            font-size:1.5vmax;
+        }
+        #submit:hover{
+            background-color:rgb(57, 57, 214);
+        }
+        #answer{
+            background-color:green;
+            color:white;
+            display:none;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id = "container">
+        <header>
+            <h1>Age Calculator</h1>
+        </header>
+        <form onsubmit="calc()">
+            <Label for = "dob">Enter Your Date of Birth
+            </Label>
+            <input type="date" name="dob" id="dob">
+        </form>
+        <button id = "submit">Calculate</button>
+        <div id = "answer"></div>
+    </div>
+</body>
+
+<script>
+    let dob = document.querySelector("#dob");
+    let submitBtn = document.querySelector("#submit");
+    let ansDiv = document.querySelector("#answer");
+    submitBtn.addEventListener("click",function(event){
+        event.preventDefault();
+
+        let date = new Date();
+ 
+        let currYear = date.getFullYear();
+
+        let dobString = dob.value.toString();
+
+        dobString = dobString.split("-");
+
+        let yearOfBirth = parseInt(dobString[0]);
+
+        ansDiv.innerHTML = `<p>Your age is ${currYear-yearOfBirth} years.</p>`;
+
+        if(currYear-yearOfBirth > -1){
+            ansDiv.style.display = "block";
+        }
+
+        return;
+    })
+</script>
+</html>
